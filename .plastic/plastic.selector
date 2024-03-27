@@ -1,0 +1,4 @@
+repository "MobProj1@LoneSamurai4@cloud"
+  path "/"
+    br "/main"
+    co "/main"
