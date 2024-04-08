@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BirdController : MonoBehaviour
@@ -13,6 +14,12 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float jumpSpeed;
 
     [SerializeField] private GameObject gameOverScreen;
+
+    public UnityEvent onHit;
+
+    public UnityEvent onPoint;
+
+    public UnityEvent onJump;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +80,9 @@ public class BirdController : MonoBehaviour
 
         // rb.velocity = Vector2.zero;
         // rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+
+        //trigger event
+        onJump?.Invoke();
     }
 
     public void RestartGame()
