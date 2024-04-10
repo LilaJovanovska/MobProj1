@@ -4,6 +4,7 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BirdController : MonoBehaviour
@@ -15,16 +16,31 @@ public class BirdController : MonoBehaviour
 
     [SerializeField] private GameObject gameOverScreen;
 
+    [SerializeField] private TextMeshProUGUI currentPointsText;
+
+    [SerializeField] private TextMeshProUGUI highscoreText;
+
     public UnityEvent onHit;
 
     public UnityEvent onPoint;
 
     public UnityEvent onJump;
 
+    public GameObject gameStartScreen;
+
+    private int currentPoints;
+    private int highScorePoints;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        currentPoints = 0;  
+        currentPointsText.text = currentPoints.ToString();
+
+        highScorePoints = PlayerPrefs.GetInt("Highscore");
+        highscoreText.text = highScorePoints.ToString();    
 
         //unpause game
         Time.timeScale = 1;
@@ -35,7 +51,6 @@ public class BirdController : MonoBehaviour
     {
         if (GetJumpInput())
         {
-            Debug.Log("Player pressed the jump button.");
             Jump();        
         }
     }
@@ -51,8 +66,24 @@ public class BirdController : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
 
-        //show points
+        //trigger event
+        onHit?.Invoke();
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        currentPoints++;
+        currentPointsText.text = currentPoints.ToString();
+
+        //show points
+        onPoint?.Invoke();
+
+        if (currentPoints > highScorePoints)
+        {
+            PlayerPrefs.SetInt("Highscore", currentPoints);
+            highScorePoints = currentPoints;
+            highscoreText.text = highScorePoints.ToString();
+        }
     }
 
     private bool GetJumpInput()
