@@ -15,9 +15,9 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float jumpSpeed;
 
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject gameStartScreen;
 
     [SerializeField] private TextMeshProUGUI currentPointsText;
-
     [SerializeField] private TextMeshProUGUI highscoreText;
 
     public UnityEvent onHit;
@@ -26,8 +26,6 @@ public class BirdController : MonoBehaviour
 
     public UnityEvent onJump;
 
-    public GameObject gameStartScreen;
-
     private int currentPoints;
     private int highScorePoints;
 
@@ -35,6 +33,9 @@ public class BirdController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        //canva start game
+
 
         currentPoints = 0;  
         currentPointsText.text = currentPoints.ToString();
@@ -106,6 +107,7 @@ public class BirdController : MonoBehaviour
 
         //reset speed
         rb.velocity = Vector2.zero;
+
         //jump
         rb.AddForce(jumpVector, ForceMode2D.Impulse);
 
