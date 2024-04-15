@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using TMPro;
+using UnityEditor;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BirdController : MonoBehaviour
 {
-
+    private GameObject player;
     private Rigidbody2D rb;
 
     [SerializeField] private float jumpSpeed;
@@ -34,17 +35,20 @@ public class BirdController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        //canva start game
+        Pause();
 
+        //canva start game
+        gameStartScreen.SetActive(true);
 
         currentPoints = 0;  
         currentPointsText.text = currentPoints.ToString();
 
         highScorePoints = PlayerPrefs.GetInt("Highscore");
-        highscoreText.text = highScorePoints.ToString();    
+        highscoreText.text = highScorePoints.ToString();
 
         //unpause game
         Time.timeScale = 1;
+
     }
 
     // Update is called once per frame
@@ -54,6 +58,13 @@ public class BirdController : MonoBehaviour
         {
             Jump();        
         }
+    }
+
+    public void Pause()
+    {
+        gameStartScreen.SetActive(true);
+        Time.timeScale = 0f;
+        player.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
