@@ -35,10 +35,10 @@ public class BirdController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Pause();
+       // Pause();
 
         //canva start game
-        gameStartScreen.SetActive(true);
+        //gameStartScreen.SetActive(true);
 
         currentPoints = 0;  
         currentPointsText.text = currentPoints.ToString();
@@ -60,12 +60,12 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    public void Pause()
-    {
-        gameStartScreen.SetActive(true);
-        Time.timeScale = 0f;
-        player.SetActive(false);
-    }
+    //public void Pause()
+   // {
+   //     gameStartScreen.SetActive(true);
+   //     Time.timeScale = 0f;
+   //     player.SetActive(false);
+   // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

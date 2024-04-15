@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 37169544736778124}
   - component: {fileID: 8604362864335266876}
   - component: {fileID: 5732189866674113002}
+  - component: {fileID: -1178001658855598480}
   m_Layer: 0
   m_Name: PointMultiplier
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1089817487282010358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7306069, y: 1.781424, z: 0}
+  m_LocalPosition: {x: 1.3378739, y: -2.002062, z: 0}
   m_LocalScale: {x: 0.687, y: 0.5305, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,3 +131,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6857143, y: 1.0285715}
   m_EdgeRadius: 0
+--- !u!114 &-1178001658855598480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089817487282010358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a8e97e44ee95746846bb4c14abf5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplierPrefab: {fileID: 1089817487282010358}
+  multiplierParent: {fileID: 0}
+  spawnOriginMultiplier: {fileID: 0}
+  spawnInterval: 1
+  spawnOffset: 3
+  multiplierSpeed: 3
+  leftmostEdge: -5
